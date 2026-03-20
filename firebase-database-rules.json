@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+    "usernames": {
+      ".read": "auth != null",
+      "$username": {
+        ".write": "auth != null"
+      }
+    },
+    "messages": {
+      "$conversationId": {
+        ".read": "auth != null && $conversationId.contains(auth.uid)",
+        ".write": "auth != null && $conversationId.contains(auth.uid)"
+      }
+    },
+    "conversations": {
+      "$conversationId": {
+        ".read": "auth != null && $conversationId.contains(auth.uid)",
+        ".write": "auth != null && $conversationId.contains(auth.uid)"
+      }
+    }
+  }
+}
